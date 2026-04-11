@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Mentions Légales - Maison Mayje</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+    <style>
+        /* --- VARIABLES & RESET (Identiques à l'accueil) --- */
+        :root {
+            --primary: #c38b58;
+            --primary-dark: #a67345;
+            --dark: #2c1e16;
+            --light: #f9f6f0;
+            --accent: #8b3a3a;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Playfair Display', serif; 
+            background-color: var(--light); 
+            color: var(--dark); 
+            overflow-x: hidden; 
+        }
+        
+        /* --- TYPOGRAPHIE --- */
+        h1, h2, h3 { font-weight: 700; }
+        p { font-family: 'Lato', sans-serif; line-height: 1.8; color: #4a3b32; }
+        
+        /* --- NAVIGATION --- */
+        nav { 
+            position: fixed; 
+            width: 100%; 
+            padding: 15px 50px; 
+            background: rgba(249, 246, 240, 0.98); 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            z-index: 100; 
+        }
+        .logo { 
+            font-size: 2rem; 
+            font-weight: bold; 
+            letter-spacing: 2px; 
+            color: var(--primary); 
+            text-transform: uppercase; 
+            text-decoration: none;
+        }
+        .nav-links a {
+            font-family: 'Lato', sans-serif;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--primary); }
+
+               /* --- EN-TÊTE DE PAGE ÉPURÉ --- */
+        .page-header { 
+            padding-top: 160px; /* Espace pour respirer sous la barre de navigation */
+            padding-bottom: 20px;
+            text-align: center; 
+            background-color: var(--light);
+        }
+        .page-header h1 { 
+            font-size: 3.5rem; 
+            color: var(--dark);
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            animation: fadeUp 1s forwards; 
+        }
+        .page-header .separator {
+            width: 80px;
+            height: 2px;
+            background-color: var(--primary);
+            margin: 0 auto;
+            animation: fadeUp 1s forwards 0.2s;
+            opacity: 0;
+        }
+
+        /* --- CONTENU DES MENTIONS LÉGALES --- */
+        .legal-content {
+            max-width: 800px;
+            margin: 80px auto;
+            padding: 0 20px;
+            animation: fadeUp 1s forwards 0.3s;
+            opacity: 0;
+        }
+        .legal-content p.intro {
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 50px;
+            font-style: italic;
+            color: var(--primary-dark);
+        }
+        .legal-block {
+            margin-bottom: 40px;
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+        }
+        .legal-block h3 {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(195, 139, 88, 0.3);
+            padding-bottom: 10px;
+        }
+        .legal-block p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+        .legal-block strong {
+            color: var(--primary-dark);
+        }
+
+        /* --- FOOTER --- */
+        footer { 
+            background: #1a110c; 
+            color: var(--light); 
+            text-align: center; 
+            padding: 60px 20px; 
+        }
+        footer p { opacity: 0.6; font-size: 1rem; color: var(--light); }
+        footer a { color: var(--primary); text-decoration: none; }
+
+        @keyframes fadeUp { 
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        @media (max-width: 768px) {
+            .hero-mini-content h1 { font-size: 2.8rem; }
+            .legal-block { padding: 25px; }
+            nav { padding: 15px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <a href="index.html" class="logo">Mayje</a>
+        <div class="nav-links">
+            <a href="index.html">Retour à l'accueil</a>
+        </div>
+    </nav>
+
+    <!-- EN-TÊTE -->
+    <header class="page-header">
+        <h1>Mentions Légales</h1>
+        <div class="separator"></div>
+    </header>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main class="legal-content">
+        <p class="intro">
+            Chez Maison Mayje, nous aimons les belles histoires, les jeux d’esprit et les univers qui font sourire. Ce site est une création récréative et fictive.
+        </p>
+
+        <div class="legal-block">
+            <h3>Éditeur du site</h3>
+            <p>Le présent site est édité à titre non professionnel. Il ne propose à la vente aucun bien ni aucun service, et ne représente aucune marque, société ou agence réelle.</p>
+            <p>Conformément au régime applicable aux éditeurs non professionnels (Art. 6 de la LCEN), l’identité complète de l’éditeur a été communiquée à l’hébergeur du site, qui la tient à disposition des autorités compétentes en cas de demande légale.</p>
+        </div>
+
+        <div class="legal-block">
+            <h3>Hébergement</h3>
+            <p>Le site est hébergé par :</p>
+            <p>
+                <strong>GitHub, Inc.</strong><br>
+                88 Colin P. Kelly Jr. Street<br>
+                San Francisco, CA 94107, États-Unis<br>
+                Téléphone : +1 (877) 448-4820<br>
+                Site web : <a href="https://github.com" target="_blank">https://github.com</a>
+            </p>
+        </div>
+
+        <div class="legal-block">
+            <h3>Propriété intellectuelle</h3>
+            <p>Les textes, éléments visuels, mises en page, créations graphiques et ambiances présents sur ce site sont protégés au titre du droit applicable à la propriété intellectuelle. Le contenu présenté sur ce site relève de la fiction et du divertissement.</p>
+            <p>Toute reproduction, représentation, adaptation ou réutilisation, totale ou partielle, sans autorisation préalable, n’est pas autorisée.</p>
+        </div>
+
+        <div class="legal-block">
+            <h3>Données personnelles & Cookies</h3>
+            <p>À la date de mise en ligne de cette page, le site ne collecte aucune donnée personnelle via formulaire et n’organise aucune création de compte, commande ou réservation.</p>
+            <p>Le site n’utilise pas, à la connaissance de l’éditeur, de cookies publicitaires ni de traceurs destinés à l’exploitation commerciale des données des visiteurs.</p>
+        </div>
+
+        <div class="legal-block">
+            <h3>Contact</h3>
+            <p>Pour tout signalement relatif au contenu du site ou si vous aviez oublié d'acheter un nom de domaine par exemple, vous pouvez écrire à :<br>
+            <strong>jvousavaisditquoi@lesanglesmoooorts.com</strong></p>
+        </div>
+    </main>
+
+    <!-- PIED DE PAGE -->
+    <footer>
+        <h2 style="font-size: 2rem; margin-bottom: 10px; color: var(--primary);">Maison Mayje</h2>
+        <p>L'Agence Matrimoniale des Épicuriens</p>
+        <p style="margin-top: 20px; font-size: 0.85rem;">
+            © 2026 Maison Mayje. Tous droits réservés. | <a href="mentions-legales.html">Mentions Légales</a>
+        </p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maison Mayje - L'Art de la Rencontre</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --primary: #c38b58;
+            --primary-dark: #a67345;
+            --dark: #2c1e16;
+            --light: #f9f6f0;
+            --accent: #8b3a3a; /* Touche légèrement plus passionnée/romantique */
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Playfair Display', serif; 
+            background-color: var(--light); 
+            color: var(--dark); 
+            overflow-x: hidden; 
+        }
+        
+        /* --- TYPOGRAPHIE --- */
+        h1, h2, h3 { font-weight: 700; }
+        p { font-family: 'Lato', sans-serif; line-height: 1.8; color: #4a3b32; }
+        
+        /* --- NAVIGATION --- */
+        nav { 
+            position: fixed; 
+            width: 100%; 
+            padding: 25px 50px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            z-index: 100; 
+            transition: all 0.4s ease; 
+        }
+        nav.scrolled { 
+            padding: 15px 50px;
+            background: rgba(249, 246, 240, 0.95); 
+            backdrop-filter: blur(10px); 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05); 
+        }
+        .logo { 
+            font-size: 2rem; 
+            font-weight: bold; 
+            letter-spacing: 2px; 
+            color: var(--light); 
+            text-transform: uppercase; 
+            transition: color 0.4s;
+        }
+        nav.scrolled .logo { color: var(--primary); }
+        
+        /* --- HERO SECTION --- */
+        .hero { 
+            height: 100vh; 
+            position: relative; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            color: white; 
+            overflow: hidden; 
+        }
+        .hero img { 
+            position: absolute; 
+            top: 0; left: 0; 
+            width: 100%; height: 100%; 
+            object-fit: cover; 
+            z-index: -2; 
+            animation: zoomOut 15s infinite alternate ease-in-out; 
+            object-position: center 20%;
+        }
+        .hero::after { 
+            content: ''; 
+            position: absolute; 
+            top: 0; left: 0; 
+            width: 100%; height: 100%; 
+            background: rgba(0, 0, 0, 0.5); 
+            z-index: -1; 
+        }
+        .hero-content h1 { 
+            font-size: 5.5rem; 
+            margin-bottom: 20px; 
+            opacity: 0; 
+            transform: translateY(50px); 
+            animation: fadeUp 1s forwards 0.5s; 
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+        .hero-content p { 
+            font-size: 1.5rem; 
+            font-family: 'Lato', sans-serif;
+            margin-bottom: 40px; 
+            opacity: 0; 
+            transform: translateY(50px); 
+            animation: fadeUp 1s forwards 0.8s; 
+        }
+        .btn { 
+            padding: 15px 35px; 
+            background: var(--primary); 
+            color: white; 
+            text-decoration: none; 
+            font-size: 1.1rem; 
+            font-family: 'Lato', sans-serif;
+            letter-spacing: 1px;
+            border-radius: 50px; 
+            transition: all 0.3s; 
+            opacity: 0; 
+            animation: fadeUp 1s forwards 1.1s; 
+            display: inline-block; 
+            box-shadow: 0 10px 20px rgba(195, 139, 88, 0.3);
+        }
+        .btn:hover { 
+            background: var(--primary-dark); 
+            transform: translateY(-5px) scale(1.05); 
+        }
+
+        /* --- PHRASE D'ACCROCHE CENTRÉE --- */
+        .highlight-banner {
+            padding: 100px 20px;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+            position: relative;
+            z-index: 10;
+        }
+        .highlight-banner h2 {
+            font-family: 'Lato', sans-serif;
+            font-weight: 300;
+            font-size: 1.5rem;
+            color: #666;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        .highlight-banner h3 {
+            font-size: 4rem;
+            color: var(--primary);
+            line-height: 1.2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* --- SECTIONS GÉNÉRALES --- */
+        section { padding: 120px 5vw; }
+        .section-title { 
+            text-align: center; 
+            font-size: 3.5rem; 
+            margin-bottom: 60px; 
+            color: var(--dark); 
+        }
+        
+        /* --- SECTION À PROPOS --- */
+        .about-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 60px; 
+            align-items: center; 
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .about-text h2 { margin-bottom: 30px; font-size: 3rem; text-align: left; }
+        .about-text p { font-size: 1.15rem; margin-bottom: 20px; }
+        
+        .about-images { position: relative; height: 600px; }
+        .about-images img { 
+            position: absolute; 
+            border-radius: 20px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15); 
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+            object-fit: cover;
+        }
+        .img-1 { width: 65%; height: 80%; top: 0; right: 0; z-index: 2; }
+        .img-2 { width: 55%; height: 60%; bottom: 20px; left: 0; z-index: 1; border: 10px solid var(--light); }
+        .about-images:hover .img-1 { transform: translate(-15px, 15px) scale(1.03); }
+        .about-images:hover .img-2 { transform: translate(15px, -15px) scale(1.03); }
+
+        /* --- SECTION GALERIE --- */
+        .gallery-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 25px; 
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .gallery-item { 
+            position: relative; 
+            overflow: hidden; 
+            border-radius: 20px; 
+            height: 450px; 
+            cursor: pointer; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        .gallery-item img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+        }
+        .gallery-overlay { 
+            position: absolute; 
+            inset: 0; 
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%); 
+            opacity: 0; 
+            transition: opacity 0.5s ease; 
+            display: flex; 
+            align-items: flex-end; 
+            padding: 40px 30px; 
+        }
+        .gallery-overlay h3 { 
+            color: white; 
+            font-size: 2rem; 
+            transform: translateY(30px); 
+            transition: transform 0.5s ease; 
+        }
+        .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+        .gallery-item:hover .gallery-overlay h3 { transform: translateY(0); }
+
+        /* --- SECTION RÉVÉLATION (AGENCE MATRIMONIALE) --- */
+        .revelation {
+            background-color: var(--dark);
+            color: var(--light);
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+        }
+        .revelation h2 {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 30px;
+        }
+        .revelation p {
+            color: var(--light);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+            opacity: 0.9;
+        }
+        .revelation strong {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* --- ANIMATIONS AU SCROLL --- */
+        .hidden { 
+            opacity: 0; 
+            transform: translateY(60px); 
+            transition: all 1s cubic-bezier(0.5, 0, 0, 1); 
+        }
+        .show { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+
+        /* --- KEYFRAMES --- */
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+        @keyframes zoomOut { 0% { transform: scale(1.15); } 100% { transform: scale(1); } }
+        
+        /* --- FOOTER --- */
+        footer { 
+            background: #1a110c; 
+            color: var(--light); 
+            text-align: center; 
+            padding: 60px 20px; 
+        }
+        footer p { opacity: 0.6; font-size: 1rem; color: var(--light); }
+        
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 3.5rem; }
+            .highlight-banner h3 { font-size: 2.5rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .about-images { height: 400px; margin-top: 40px; }
+            .section-title, .revelation h2 { font-size: 2.5rem; }
+            nav { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barre de navigation -->
+    <nav id="navbar">
+        <div class="logo">Maison Mayje</div>
+    </nav>
+
+    <!-- En-tête / Accueil avec l'image "Sexy Boulanger" -->
+    <header class="hero">
+        <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/196d4888-f9ea-4553-b296-578619937d83.png" alt="Maison Mayje Accueil">
+        <div class="hero-content">
+            <h1>Maison Mayje</h1>
+            <p>Le goût de l'artisanat... et des rencontres inoubliables.</p>
+            <a href="#about" class="btn">Entrez dans la boutique</a>
+        </div>
+    </header>
+
+    <!-- Phrase d'accroche centrale -->
+    <div class="highlight-banner hidden">
+        <h2>Nous n'avons plus qu'une chose à vous dire...</h2>
+        <h3>La boulangerie est ouverte les filles !</h3>
+    </div>
+
+    <!-- Section À Propos avec les images taquines -->
+    <section class="about" id="about">
+        <div class="about-grid">
+            <div class="about-text hidden">
+                <h2>Le Charme Fait Maison</h2>
+                <p>Chez <strong>Maison Mayje</strong>, nous savons que les meilleures choses de la vie demandent du temps, de la passion, et une touche de séduction. Nos équipes mettent tout en œuvre pour vous proposer une expérience chaleureuse, gourmande et taquine.</p>
+                <p>Laissez-vous charmer par nos sourires ravageurs et nos créations irrésistibles. Ici, on ne pétrit pas seulement la pâte, on crée des étincelles.</p>
+            </div>
+            <div class="about-images hidden">
+                <!-- Image taquine avec la baguette -->
+                <img src="44f7ddb9-b9ba-469c-ae2e-e52f15ec4a8b.png" alt="Boulangère séduisante et baguette" class="img-1">
+                <!-- Image taquine avec le pain au chocolat -->
+                <img src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/79eb4ec9-5398-451a-be33-ec4cb9b61728.png" alt="Sourire et gourmandise" class="img-2">
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Galerie -->
+    <section class="gallery" id="galerie">
+        <h2 class="section-title hidden">Nos Merveilles</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item hidden">
+                <img src="generated-image (7).png" alt="Gourmandise au comptoir">
+                <div class="gallery-overlay"><h3>Le Goût du Partage</h3></div>
+            </div>
+            <div class="gallery-item hidden" style="transition-delay: 0.1s;">
+                <img src="31dcd2b4-6ab1-490e-a300-cff45280d6a3.png" alt="Douceur sucrée">
+                <div class="gallery-overlay"><h3>Une Touche de Sucre</h3></div>
+            </div>
+            <div class="gallery-item hidden" style="transition-delay: 0.2s;">
+                <img src="e5ac9d83-3b7d-4ace-85bc-6cb9b3a92600.png" alt="Jeu et séduction">
+                <div class="gallery-overlay"><h3>Tradition Complice</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Révélation : Agence Matrimoniale -->
+    <section class="revelation hidden">
+        <h2>Plus qu'une simple vitrine...</h2>
+        <p>Derrière nos tabliers et nos sourires charmeurs, la <strong>Maison Mayje</strong> est en réalité une <strong>agence matrimoniale d'exception</strong>.</p>
+        <p>Parce que trouver le partenaire idéal ressemble beaucoup à la recherche du pain parfait : il faut de la chaleur, du temps, et la bonne alchimie. Nous sommes là pour faire lever les sentiments et vous aider à trouver la personne avec qui partager vos petits matins dorés.</p>
+        <a href="#" class="btn" style="margin-top: 20px;">Rencontrer votre moitié</a>
+    </div>
+
+    </section>
+
+    <!-- Pied de page -->
+    <footer>
+ <h2 style="font-size: 2rem; margin-bottom: 10px; color: var(--primary);">
+  Maison Mayje
+ </h2>
+ <p>
+  L'Agence Matrimoniale des Épicuriens
+ </p>
+ <p style="margin-top: 20px; font-size: 0.85rem;">
+  © 2026 Maison Mayje. Tous droits réservés. | <a href="mentions-legales.html" style="color: var(--primary); text-decoration: none;">Mentions Légales</a>
+ </p>
+</footer>
+
+    <!-- LOGIQUE JAVASCRIPT -->
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                if(this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.hidden').forEach((el) => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
